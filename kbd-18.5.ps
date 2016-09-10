@@ -1,0 +1,107 @@
+%!PS-Adobe-2.0
+%%Creator: O'Reilly 2.1
+%%CreationDate: 12/12/94 14/12/40
+%%End Comments
+/mm {2.83464 mul} def
+/toMM {2.83464 div} def
+
+% desired layout characteristics; vert must be at least the longer dimension of the switches
+% horiz must be at least the shorter dimension. The Matias quiet linear switches are
+% 17.5 x 12 mm. We use 18.5mm vertical separation due to slight inaccuracies in hole punching
+% which can make it difficult to install the switches tightly butted up to one another.
+
+/vertMM 18.5 def
+/vert vertMM mm def
+/horiz 20 mm def
+/pinoffset 0.5 mm def % the distance of the pins from the vertical line equidistant from them
+/pinspacing 2.5 mm def  % half distance between the pins; assume that the pins are centered in vert space taken up by the switch
+
+% desired visual characteristics
+/holeradius 0.5 mm def
+/linewidth 0.1 mm def
+/bottomMargin 6 mm def
+/topMargin 9.5 mm def
+% define the position of the bottom left corner
+% note: the x,y reference frame for drawing is rotated 90 deg. from
+% the actual keyboard
+/xoffset 25 mm def
+/yoffset 20 mm def
+
+
+
+linewidth setlinewidth
+
+% some names that make better sense for drawing in the x,y frame of reference
+/xspacing vert def
+/yspacing horiz def
+
+
+% draw a circle at currentpoint and leave currentpoint where it was
+/hole {
+    currentpoint currentpoint holeradius 0 360 arc closepath stroke moveto
+} def
+
+% with currentpoint at the beginning of one of the lines where 3 switches will be
+% placed, draw the switch pin holes
+/drawHoles {
+    xspacing 2 div pinspacing sub pinoffset neg rmoveto hole 
+    xspacing 0 mm rmoveto hole 
+    xspacing 0 mm rmoveto hole 
+    xspacing 2 mul neg pinspacing 2 mul add pinoffset 2 mul rmoveto hole
+    xspacing 0 mm rmoveto hole
+    xspacing 0 mm rmoveto hole 
+} def
+
+/starty { yspacing mul yoffset add } def
+/linelen xspacing 3 mul  def
+/xlineat {
+    2 dict begin
+    /y exch def
+    /x exch def
+    x y moveto linelen 0 mm rlineto stroke
+    x y moveto drawHoles
+    end
+} def
+
+xoffset 0 starty xlineat
+xoffset 1 starty xlineat
+xoffset 2 starty xlineat
+xoffset 3 starty xlineat
+xoffset 4 starty xlineat
+xoffset 5 starty xlineat
+
+xoffset 7 starty xlineat
+xoffset 8 starty xlineat
+xoffset 9 starty xlineat
+xoffset 10 starty xlineat
+xoffset 11 starty xlineat
+xoffset 12 starty xlineat
+
+/startx { xspacing mul xoffset add } def
+/lineht  yspacing 12 mul def
+
+% the bottom cut line
+xoffset bottomMargin sub yoffset moveto 0 mm lineht rlineto stroke
+% lines for the grid
+0 startx yoffset moveto 0 mm lineht rlineto stroke
+1 startx yoffset moveto 0 mm lineht rlineto stroke
+2 startx yoffset moveto 0 mm lineht rlineto stroke
+3  startx yoffset moveto 0 mm lineht rlineto stroke
+
+% the top cut line
+3 startx topMargin add yoffset moveto 0 mm lineht rlineto stroke
+
+% a bit of information about the drawing
+/Courier findfont 12 scalefont setfont
+120 mm 100 mm moveto
+(TPOEPL board layout template) show
+120 mm 95 mm moveto
+(Board size: 280mm x ) show
+vert 3 mul topMargin add bottomMargin add toMM 6 string cvs show
+(mm) show
+120 mm 90 mm moveto
+(Vertical switch spacing: ) show
+vertMM 5 string cvs show
+(mm) show
+showpage
+
