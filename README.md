@@ -13,4 +13,8 @@ By the way, the 18.5 in the name refers to the vertical center-to-center
 spacing of the switches. Both it and the horizontal spacing (currently 20mm)
 are easily changed by changing constants at the top of the `.ps` file.
 
+Instructions for building the board are in a [Google Doc](https://docs.google.com/document/d/1f9g5ClvySoVBOnJzF_X80j66RdHbnakePKb2xWS5gLM/edit?usp=sharing).
+
+Firmware for the board is available on [GitHub](https://github.com/chauser/StenoFW)
+
 
