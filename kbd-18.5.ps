@@ -9,12 +9,13 @@
 % horiz must be at least the shorter dimension. The Matias quiet linear switches are
 % 17.5 x 12 mm. We use 18.5mm vertical separation due to slight inaccuracies in hole punching
 % which can make it difficult to install the switches tightly butted up to one another.
-
+/horizMM 20 def
 /vertMM 18.5 def
-/vert vertMM mm def
-/horiz 20 mm def
 /pinoffset 0.5 mm def % the distance of the pins from the vertical line equidistant from them
 /pinspacing 2.5 mm def  % half distance between the pins; assume that the pins are centered in vert space taken up by the switch
+
+/vert vertMM mm def
+/horiz vertMM mm def
 
 % desired visual characteristics
 /holeradius 0.5 mm def
@@ -63,12 +64,18 @@ linewidth setlinewidth
     end
 } def
 
+/xlineatnoholes {
+    moveto linelen 0 mm rlineto stroke
+} def
+
 xoffset 0 starty xlineat
 xoffset 1 starty xlineat
 xoffset 2 starty xlineat
 xoffset 3 starty xlineat
 xoffset 4 starty xlineat
 xoffset 5 starty xlineat
+
+xoffset 6 starty xlineatnoholes
 
 xoffset 7 starty xlineat
 xoffset 8 starty xlineat
@@ -93,6 +100,11 @@ xoffset bottomMargin sub yoffset moveto 0 mm lineht rlineto stroke
 
 % a bit of information about the drawing
 /Courier findfont 12 scalefont setfont
+120 mm 140 mm moveto
+(NOTE: No holes are punched) show
+120 mm 135 mm moveto
+(on the center line) show
+
 120 mm 100 mm moveto
 (TPOEPL board layout template) show
 120 mm 95 mm moveto
@@ -102,6 +114,10 @@ vert 3 mul topMargin add bottomMargin add toMM 6 string cvs show
 120 mm 90 mm moveto
 (Vertical switch spacing: ) show
 vertMM 5 string cvs show
+(mm) show
+120 mm 85 mm moveto
+(Horizontal switch spacing: ) show
+horizMM 5 string cvs show
 (mm) show
 showpage
 
