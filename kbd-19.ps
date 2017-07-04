@@ -9,8 +9,15 @@
 % horiz must be at least the shorter dimension. The Matias quiet linear switches are
 % 17.5 x 12 mm. We use 18.5mm vertical separation due to slight inaccuracies in hole punching
 % which can make it difficult to install the switches tightly butted up to one another.
-/horizMM 20.5 def
-/vertMM 18.5 def
+% 19x21 spacing seems good for the scrabble wood tiles I bought on Amazon for keytops.
+% They are nominally 18x20mm but vary a bit, over and under. 18.75x20.75 might be enough.
+
+% When printing this, make sure that the printed copy has the right dimensions -- some
+% programs I used did "scale-to-fit" without providing any control for it. You don't want
+% that!
+
+/horizMM 21.0 def
+/vertMM 19.0 def
 /pinoffset 0.5 mm def % the distance of the pins from the vertical line equidistant from them
 /pinspacing 2.5 mm def  % half distance between the pins; assume that the pins are centered in vert space taken up by the switch
 
